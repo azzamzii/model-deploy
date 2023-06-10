@@ -9,8 +9,7 @@ import pickle
 
 app = Flask(__name__)
 
-# Load data from intents.json file
-with open('intents.json') as file:
+with open('pet.json', 'r') as file:
     data = json.load(file)
 
 # Load trained model
@@ -45,7 +44,7 @@ def chat():
         tag = lbl_encoder.inverse_transform([np.argmax(result)])
         found_tag = False
 
-        for intent in data['intents']:
+        for intent in data['pet']:
             if intent['tag'] == tag:
                 response = random.choice(intent['responses'])
                 found_tag = True
